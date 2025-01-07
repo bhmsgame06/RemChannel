@@ -51,16 +51,19 @@ public class RemChannel {
 		System.out.println("Wrote " + out.length() + " bytes");
 	}
 	
-	public static final String removeExtension(String file) {
-		StringBuffer buffer = new StringBuffer();
-		for(int i = 0;i < file.length();i++) {
-			char sym = file.charAt(i);
-			if(sym != '.') {
-				buffer.append(sym);
-			} else {
-				break;
-			}
+	public static String removeExtension(String file) {
+		StringBuilder name = new StringBuilder();
+		char ch = 0;
+		int index = file.length() - 1;
+
+		for(;(ch = file.charAt(index)) != '.';index--) {
 		}
-		return buffer.toString();
+		index--;
+		for(;index >= 0;index--) {
+			ch = file.charAt(index);
+			name.append(ch);
+		}
+
+		return name.reverse().toString();
 	}
 }
